@@ -6,14 +6,15 @@ const {
 } = chai;
 chai.use(chaiHttp);
 
+// Test Suite
 describe('Testing Appinfo', () => {
+  // Test Case
   it('/GET Fetching AppInfo', (done) => {
     chai.request(server).get('/api').end((err, res) => {
-      if(err) {
+      if (err) {
         console.log('err', err);
         done();
       }
-
       expect(res.statusCode).to.equal(200);
       done();
     })

@@ -34,7 +34,7 @@ app.disable('x-powered-by');
 app.use(responseTime());
 
 //Best practices app settings
-app.set('title', 'presentation-api');
+app.set('title', 'PRDXN Node API');
 app.set('query parser', `extended`);
 
 const clientUrl = process.env.CLIENT_URL || config.client;
