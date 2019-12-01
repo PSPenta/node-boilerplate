@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000 --exit"
+    "start": "node app.js",
+    "pretest": "eslint",
+    "test": "mocha --timeout 10000 --exit",
+    "lint-staged": "lint-staged"
   },
+  "lint-staged": {
+    "*.js": "eslint"
+   },
+  "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/guptavishalsprdxn/prdxn-node-boilerplate.git"
@@ -37,6 +44,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "mocha": "^6.2.2"
+    "eslint": "^6.7.2",
+    "lint-staged": "^9.5.0",
+    "mocha": "^6.2.2",
+    "pre-commit": "^1.2.2"
   }
 }
