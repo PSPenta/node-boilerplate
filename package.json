@@ -11,7 +11,7 @@
   },
   "lint-staged": {
     "*.js": "eslint"
-   },
+  },
   "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "gulp": "^4.0.2",
     "helmet": "^3.21.2",
     "lodash": "^4.17.15",
+    "module-alias": "^2.2.2",
     "mongo-morgan-ext": "^1.0.2",
     "mongoose": "^5.7.13",
     "morgan": "^1.9.1",
@@ -48,5 +49,13 @@
     "lint-staged": "^9.5.0",
     "mocha": "^6.2.2",
     "pre-commit": "^1.2.2"
+  },
+  "_moduleAliases": {
+    "@config": "src/config",
+    "@routes": "src/routes",
+    "@controllers": "src/controllers",
+    "@models": "src/models",
+    "@test": "src/test",
+    "@helpers": "src/helpers"
   }
 }
