@@ -12,7 +12,7 @@ _version:-_ `>= v4.0.13`
 ### Development Setup :-
 1. Clone the repository  and install dependencies
 	 ```
-	 $ git clone https://github.com/digital-112/pptgen-api.git
+	 $ git clone https://github.com/guptavishalsprdxn/prdxn-node-api-boilerplate.git
 	 $ npm install 
 	```	 
 2. Create a *.env* file which can be referenced from *.env.example* and provide environment variables.
