@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "cross-env NODE_ENV=development node app.js",
-    "qbe-qa": "cross-env NODE_ENV=qbe-qa-0 node app.js",
+    "prod": "cross-env NODE_ENV=production node app.js",
+    "stage": "cross-env NODE_ENV=staging node app.js",
     "pretest": "eslint",
     "test": "mocha --timeout 10000 --exit",
     "lint-staged": "lint-staged"
