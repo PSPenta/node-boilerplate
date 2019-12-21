@@ -10,16 +10,15 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const dotenvFlow = require('dotenv-flow');
 
-console.log('before ===>', process.env.NODE_ENV);
 dotenvFlow.config();
+console.log(' Current Environment ===>', process.env.NODE_ENV);
 
 require('module-alias/register');
-console.log('after ===>', process.env.NODE_ENV);
 //Local Modules
 const utils = require('@helpers/utils');
 const {
   errorMessages
-} = require('@helpers/responseMessages');
+} = require('@helpers/errorMessage');
 const config = require('@config/config');
 const routes = require('@routes/routes');
 

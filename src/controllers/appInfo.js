@@ -1,4 +1,4 @@
-const errorMsg = require('@helpers/responseMessages').errorMessages;
+const errorMsg = require('@helpers/errorMessage').errorMessages;
 const utils = require('@helpers/utils');
 
 exports.fetchAppInfo = (req, res) => {
