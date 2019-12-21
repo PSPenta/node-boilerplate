@@ -21,7 +21,7 @@ exports.errorMessages = {
   },
   'noCompleteDataProvided': {
     'code': 'Bad Request',
-    'message': 'Provide Atleast 3 Characters.'
+    'message': 'Provide At least 3 Characters.'
   },
   'noDataExist': {
     'code': 'Bad Request',
