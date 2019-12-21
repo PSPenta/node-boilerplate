@@ -22,11 +22,11 @@ config.swaggerDefinition = {
       'in': 'header'
     }
   }
-}
+};
 config.swaggerOptions = {
   'customSiteTitle': '[Project Title]',
   'customCss': '',
   'customfavIcon': ''
-}
+};
 
 module.exports = config;

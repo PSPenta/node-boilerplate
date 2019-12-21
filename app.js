@@ -8,10 +8,15 @@ const helmet = require('helmet');
 const responseTime = require('response-time');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const dotenvFlow = require('dotenv-flow');
 
-require('dotenv').config();
+console.log('before ===>', process.env.NODE_ENV);
+dotenvFlow.config({
+  path: `env.${process.env.NODE_ENV}`
+});
+
 require('module-alias/register');
-
+console.log('after ===>', process.env.NODE_ENV);
 //Local Modules
 const utils = require('@helpers/utils');
 const {
@@ -39,6 +44,9 @@ app.set('title', 'PRDXN Node API');
 app.set('query parser', 'extended');
 
 const clientUrl = process.env.CLIENT_URL || config.client;
+
+/* Importing database connection when server starts **/
+require('./src/config/dbConfig');
 
 /* CORS Setting */
 app.use(function (req, res, next) {
