@@ -17,15 +17,15 @@
   "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guptavishalsprdxn/prdxn-node-boilerplate.git"
+    "url": "git+https://github.com/prdxn/node-boilerplate.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/guptavishalsprdxn/prdxn-node-boilerplate/issues"
+    "url": "https://github.com/prdxn/node-boilerplate/issues"
   },
-  "homepage": "https://github.com/guptavishalsprdxn/prdxn-node-boilerplate#readme",
+  "homepage": "https://github.com/prdxn/node-boilerplate#readme",
   "dependencies": {
     "@hapi/joi": "^16.1.8",
     "body-parser": "^1.19.0",
