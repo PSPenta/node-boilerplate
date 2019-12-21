@@ -12,8 +12,8 @@ _version:-_ `>= v4.0.13`
 ### Development Setup :-
 1. Clone the repository  and install dependencies
 	 ```
-	 $ git clone https://github.com/guptavishalsprdxn/prdxn-node-api-boilerplate.git
-	 $ npm install 
+	 $ git clone https://github.com/prdxn/node-boilerplate.git
+	 $ npm install
 	```	 
 2. Create a *.env* file which can be referenced from *.env.example* and provide environment variables.
 3. To run tests
