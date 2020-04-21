@@ -9,7 +9,9 @@
     "stage": "cross-env NODE_ENV=staging node app.js",
     "pretest": "eslint",
     "test": "mocha --timeout 10000 --exit",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "update:packages": "npm install --save-dev npm-check-updates && ncu -u && npm update",
+    "coverage": "nyc --reporter=html mocha --timeout 10000 --exit"
   },
   "lint-staged": {
     "*.js": "eslint"
@@ -27,32 +29,33 @@
   },
   "homepage": "https://github.com/prdxn/node-boilerplate#readme",
   "dependencies": {
-    "@hapi/joi": "^16.1.8",
+    "@hapi/joi": "^17.1.1",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
-    "cron": "^1.7.2",
+    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
-    "gulp": "^4.0.2",
-    "helmet": "^3.21.2",
+    "helmet": "^3.22.0",
     "lodash": "^4.17.15",
     "module-alias": "^2.2.2",
     "mongo-morgan-ext": "^1.0.2",
-    "mongoose": "^5.7.13",
-    "morgan": "^1.9.1",
-    "pm2": "^4.2.0",
+    "mongoose": "^5.9.7",
+    "morgan": "^1.10.0",
+    "pm2": "^4.2.3",
     "response-time": "^2.3.2",
-    "swagger-jsdoc": "^3.4.0",
-    "swagger-ui-express": "^4.1.2"
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "cross-env": "^6.0.3",
-    "eslint": "^6.7.2",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
     "lint-staged": "^9.5.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.1.1",
+    "npm-check-updates": "^4.1.1",
+    "nyc": "^15.0.1",
     "pre-commit": "^1.2.2"
   },
   "_moduleAliases": {

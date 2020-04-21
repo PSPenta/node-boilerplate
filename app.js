@@ -61,7 +61,6 @@ app.use(function (req, res, next) {
  * @name Swagger Documentation
  * @description This is used for API documentation. It's not mandatory 
  *  */
-
 const swaggerDefinition = config.swaggerDefinition;
 const swaggerOptions = config.swaggerOptions;
 const options = {
