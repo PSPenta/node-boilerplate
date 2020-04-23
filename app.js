@@ -79,11 +79,6 @@ app.use(bodyParser.json({
   limit: '50mb'
 }));
 
-app.use(bodyParser.urlencoded({
-  'limit': '50mb',
-  'extended': true
-}));
-
 /**
  * @name compression
  * @description  This middleware will attempt to compress response bodies for all request that traverse through the middleware.
