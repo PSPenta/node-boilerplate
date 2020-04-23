@@ -38,7 +38,6 @@
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "lodash": "^4.17.15",
-    "module-alias": "^2.2.2",
     "mongo-morgan-ext": "^1.0.2",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
@@ -56,13 +55,5 @@
     "npm-check-updates": "^4.1.1",
     "nyc": "^15.0.1",
     "pre-commit": "^1.2.2"
-  },
-  "_moduleAliases": {
-    "@config": "src/config",
-    "@routes": "src/routes",
-    "@controllers": "src/controllers",
-    "@models": "src/models",
-    "@test": "src/test",
-    "@helpers": "src/helpers"
   }
 }
