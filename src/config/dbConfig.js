@@ -7,14 +7,15 @@ var config = require('./config');
 var dbURI = config.db.url + config.db.name;
 
 //console to check what is the dbURI refers to
-console.log("Database URL is =>>", dbURI);
+console.log('Database URL is =>>', dbURI);
 
 //Open the mongoose connection to the database
 mongoose.connect(dbURI, {
   'config': {
     'autoIndex': false
   },
-  'useNewUrlParser': true
+  'useNewUrlParser': true,
+  'useUnifiedTopology': true
 });
 
 // Db Connection

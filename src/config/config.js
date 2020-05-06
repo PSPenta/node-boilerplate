@@ -2,7 +2,7 @@ let config = {};
 
 config.db = {};
 config.db.url = process.env.DB_URL || 'mongodb://localhost:27017/';
-config.db.name = process.env.DB_NAME || 'vsg';
+config.db.name = process.env.DB_NAME || 'prdxn';
 config.client = process.env.CLIENT_URL || '*';
 
 /* Swagger Definition */

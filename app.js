@@ -13,14 +13,13 @@ const dotenvFlow = require('dotenv-flow');
 dotenvFlow.config();
 console.log(' Current Environment ===>', process.env.NODE_ENV);
 
-require('module-alias/register');
 //Local Modules
-const utils = require('@helpers/utils');
+const utils = require('./src/helpers/utils');
 const {
   errorMessages
-} = require('@helpers/errorMessage');
-const config = require('@config/config');
-const routes = require('@routes/routes');
+} = require('./src/helpers/errorMessage');
+const config = require('./src/config/config');
+const routes = require('./src/routes/routes');
 
 require('./src/requireAllModels');
 
@@ -61,12 +60,11 @@ app.use(function (req, res, next) {
  * @name Swagger Documentation
  * @description This is used for API documentation. It's not mandatory 
  *  */
-
 const swaggerDefinition = config.swaggerDefinition;
 const swaggerOptions = config.swaggerOptions;
 const options = {
   swaggerDefinition,
-  'apis': ['@routes/*.js'],
+  'apis': ['./src/routes/*.js'],
 };
 
 const swaggerSpec = swaggerJsDoc(options);
@@ -79,11 +77,6 @@ app.use(logger(config.db.url + config.db.name, 'logs'));
 /* Parsing Request Limits */
 app.use(bodyParser.json({
   limit: '50mb'
-}));
-
-app.use(bodyParser.urlencoded({
-  'limit': '50mb',
-  'extended': true
 }));
 
 /**

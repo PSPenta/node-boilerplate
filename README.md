@@ -13,7 +13,8 @@ _version:-_ `>= v4.0.13`
 1. Clone the repository  and install dependencies
 	 ```
 	 $ git clone https://github.com/prdxn/node-boilerplate.git
-	 $ npm install
+	 $ npm install ( If wants to work with existing version of packages )
+	 $ npm run update:packages ( If wants to work with latest version of packages )
 	```	 
 2. Create a *.env* file which can be referenced from *.env.example* and provide environment variables.
 3. To run tests

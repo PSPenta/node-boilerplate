@@ -1,4 +1,4 @@
 exports.default = {
   // List Controllers
-  'appInfo': require('@controllers/appInfo'),
+  'appInfo': require('../controllers/appInfo'),
 };
