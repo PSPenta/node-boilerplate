@@ -3,12 +3,12 @@ const dependencies = require('./routesDependencies').default;
 
 /**
  * @swagger
- * /health-check:
+ * /health:
  *  get:
  *    tags:
  *      - Server Health Check 
- *    name: Demo API
- *    summary: This is server health check API.
+ *    name: Server Health Check
+ *    summary: This is api to check server health.
  *    consumes:
  *      - application/json
  *    produces:
@@ -19,6 +19,6 @@ const dependencies = require('./routesDependencies').default;
  *      500:
  *        description: Internal server error.
  */
-router.get('/health-check', dependencies.serverHealth.checkHealth);
+router.get('/health', dependencies.serverHealth.checkHealth);
 
 module.exports = router;
