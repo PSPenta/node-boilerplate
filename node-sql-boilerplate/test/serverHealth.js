@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
@@ -7,16 +8,16 @@ const {
 chai.use(chaiHttp);
 
 // Test Suite
-describe('Testing Appinfo', () => {
+describe('Testing Server Health ', () => {
   // Test Case
-  it('/GET Fetching AppInfo', (done) => {
-    chai.request(server).get('/api').end((err, res) => {
+  it('/GET Server Health', (done) => {
+    chai.request(server).get('/api/health-check').end((err, res) => {
       if (err) {
         console.log('err', err);
         done();
       }
       expect(res.statusCode).to.equal(200);
       done();
-    })
-  })
+    });
+  });
 });
