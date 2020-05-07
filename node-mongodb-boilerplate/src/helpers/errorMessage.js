@@ -19,10 +19,6 @@ exports.errorMessages = {
     'code': 'Bad Request',
     'message': 'Duplicate Data Provided.'
   },
-  'noCompleteDataProvided': {
-    'code': 'Bad Request',
-    'message': 'Provide At least 3 Characters.'
-  },
   'noDataExist': {
     'code': 'Bad Request',
     'message': 'Data doesn\'t exist'

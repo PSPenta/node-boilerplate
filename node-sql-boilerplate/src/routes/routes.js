@@ -1,5 +1,4 @@
-const express = require('express');
-const router = new express.Router();
+const router = require('express').Router();
 const dependencies = require('./routesDependencies').default;
 
 /**

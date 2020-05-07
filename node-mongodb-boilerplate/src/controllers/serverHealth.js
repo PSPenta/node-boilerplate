@@ -1,10 +1,10 @@
 const errorMsg = require('../helpers/errorMessage').errorMessages;
 const utils = require('../helpers/utils');
 
-exports.fetchAppInfo = (req, res) => {
+exports.checkHealth = (req, res) => {
   try {
     let message = {
-      'text': 'This is demo api for to unit test'
+      'text': 'This is server healthy check API.'
     };
     res.send(utils.responseMsg(null, true, message));
   } catch (error) {
