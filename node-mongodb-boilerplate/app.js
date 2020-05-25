@@ -9,6 +9,7 @@ const responseTime = require('response-time');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const dotenvFlow = require('dotenv-flow');
+const client = require('redis').createClient();
 
 dotenvFlow.config();
 console.log(' Current Environment ===>', process.env.NODE_ENV);
@@ -78,6 +79,18 @@ app.use(logger(config.db.url + config.db.name, 'logs'));
 app.use(bodyParser.json({
   limit: '50mb'
 }));
+app.use(bodyParser.urlencoded({
+  'limit': '50mb',
+  'extended': true
+}));
+
+/**
+ * @name express-status-monitor
+ * @description This middleware will report realtime server metrics for Express-based node servers.
+ * Run server and go to /status
+ * For further information: https://www.npmjs.com/package/express-status-monitor
+ */
+app.use(require('express-status-monitor')());
 
 /**
  * @name compression
@@ -85,8 +98,14 @@ app.use(bodyParser.json({
  */
 app.use(compression());
 
+/* API rate limit configuration. */
+const limiter = require('express-limiter')(app, client);
+const apiRateLimit = require('./src/services/apiRateLimit').rateLimit;
+const limitCount = process.env.RATE_LIMIT_COUNT || 10,
+  limitMinute = process.env.RATE_LIMIT_MINUTE || 1; 
+
 /* Configuring Routes */
-app.use('/api', routes);
+app.use('/api', apiRateLimit(limiter, limitCount, limitMinute), routes);
 
 /* Handling invalid route */
 app.use('/', function (req, res) {
