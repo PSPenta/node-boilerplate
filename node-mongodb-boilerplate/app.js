@@ -10,6 +10,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const dotenvFlow = require('dotenv-flow');
 const client = require('redis').createClient();
+const cors = require('cors');
 
 dotenvFlow.config();
 console.log(' Current Environment ===>', process.env.NODE_ENV);
@@ -46,16 +47,15 @@ const clientUrl = process.env.CLIENT_URL || config.client;
 require('./src/config/dbConfig');
 
 /* CORS Setting */
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', clientUrl);
-  res.header('Access-Control-Allow-Headers', 'Origin, Authorization, X-Requested-With, Content-Type, Accept, X-Powered-By');
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, HEAD, PUT, DELETE, PATCH');
-  if ('OPTIONS' === req.method) {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-});
+const corsOption = {
+  origin: clientUrl,
+  optionsSuccessStatus: 200,
+  methods: ['POST', 'GET', 'OPTIONS', 'HEAD', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: '*',
+  preflightContinue: true,
+};
+app.use(cors(corsOption));
+app.options('*', cors());
 
 /**
  * @name Swagger Documentation
