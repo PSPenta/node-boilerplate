@@ -1,11 +1,16 @@
 // User define DB Creadentials
-var dbCredentials = require('./config').db;
+const dbCredentials = require('./config').db;
+const database = process.env.DATABASE || null;
 
-if (dbCredentials.url && dbCredentials.name) {
+if (database.toLowerCase() === 'nosql') {
+
   //Bring in the mongoose module
   const mongoose = require('mongoose');
-
-  var dbURI = dbCredentials.url + dbCredentials.name;
+  const {
+    url,
+    name
+  } = dbCredentials.noSqlDbConfig;
+  const dbURI = url + name;
 
   //console to check what is the dbURI refers to
   console.log('Database URL is => ', dbURI);
@@ -43,33 +48,37 @@ if (dbCredentials.url && dbCredentials.name) {
 
   //Exported the database connection to be imported at the server
   exports.default = db;
-} else if (
-  dbCredentials.name &&
-  dbCredentials.username &&
-  dbCredentials.password &&
-  dbCredentials.dialect &&
-  dbCredentials.host &&
-  dbCredentials.port
-) {
+} else if (database.toLowerCase() === 'sql') {
+
   //Bring in the sequelize module
   const Sequelize = require('sequelize');
-  let { name, username, password, host, port, dialect } = dbCredentials;
+  const {
+    name,
+    username,
+    password,
+    host,
+    port,
+    dialect
+  } = dbCredentials.sqlDbConfig;
 
   //logging: false because sequelize by default log all DB activities in console which will unneccessarily flood the console.
-  let sequelize = new Sequelize(name, username, password, {
+  const sequelize = new Sequelize(name, username, password, {
     host,
     port,
     dialect,
     logging: false,
+    pool: {
+      'max':5,
+      'min': 0,
+      'acquire': 30000,
+      'idle': 10000
+    },
   });
 
-  sequelize.authenticate().then(
-    () =>
-      console.log(
-        `Sequelize connection started on database "${name}" from "${dialect}"`
-      ),
-    (err) => console.error(`Sequelize connection error: ${err}`)
-  );
+  sequelize
+    .authenticate()
+    .then(() => console.log(`Sequelize connection started on database "${name}" from "${dialect}"`))
+    .catch(err => console.error(`Sequelize connection error: ${err}`));
 
   process.on('SIGINT', function () {
     console.log('Sequelize disconnected through app termination');
@@ -79,5 +88,5 @@ if (dbCredentials.url && dbCredentials.name) {
   //Exported the database connection to be imported at the server
   exports.default = sequelize;
 } else {
-  console.log('\x1b[33m%s\x1b[0m','-> Application is running without database connection!');
+  console.log('\x1b[33m%s\x1b[0m', '-> Application is running without database connection!');
 }
