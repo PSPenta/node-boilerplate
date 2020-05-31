@@ -1,6 +1,6 @@
 // User define DB Creadentials
 const dbCredentials = require('./config').db;
-const database = process.env.DATABASE || null;
+const database = process.env.DATABASE || '';
 
 if (database.toLowerCase() === 'nosql') {
 
