@@ -3,13 +3,9 @@ const dbCredentials = require('./config').db;
 const database = process.env.DATABASE || '';
 
 if (database.toLowerCase() === 'nosql') {
-
   //Bring in the mongoose module
   const mongoose = require('mongoose');
-  const {
-    url,
-    name
-  } = dbCredentials.noSqlDbConfig;
+  const { url, name } = dbCredentials.noSqlDbConfig;
   const dbURI = url + name;
 
   //console to check what is the dbURI refers to
@@ -49,7 +45,6 @@ if (database.toLowerCase() === 'nosql') {
   //Exported the database connection to be imported at the server
   exports.default = db;
 } else if (database.toLowerCase() === 'sql') {
-
   //Bring in the sequelize module
   const Sequelize = require('sequelize');
   const {
@@ -58,7 +53,7 @@ if (database.toLowerCase() === 'nosql') {
     password,
     host,
     port,
-    dialect
+    dialect,
   } = dbCredentials.sqlDbConfig;
 
   //logging: false because sequelize by default log all DB activities in console which will unneccessarily flood the console.
@@ -68,17 +63,21 @@ if (database.toLowerCase() === 'nosql') {
     dialect,
     logging: false,
     pool: {
-      'max':5,
-      'min': 0,
-      'acquire': 30000,
-      'idle': 10000
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
     },
   });
 
   sequelize
     .authenticate()
-    .then(() => console.log(`Sequelize connection started on database "${name}" from "${dialect}"`))
-    .catch(err => console.error(`Sequelize connection error: ${err}`));
+    .then(() =>
+      console.log(
+        `Sequelize connection started on database "${name}" from "${dialect}"`
+      )
+    )
+    .catch((err) => console.error(`Sequelize connection error: ${err}`));
 
   process.on('SIGINT', function () {
     console.log('Sequelize disconnected through app termination');
@@ -88,5 +87,8 @@ if (database.toLowerCase() === 'nosql') {
   //Exported the database connection to be imported at the server
   exports.default = sequelize;
 } else {
-  console.log('\x1b[33m%s\x1b[0m', '-> Application is running without database connection!');
+  console.log(
+    '\x1b[33m%s\x1b[0m',
+    '-> Application is running without database connection!'
+  );
 }

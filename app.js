@@ -10,6 +10,7 @@ const swaggerUi = require('swagger-ui-express');
 const dotenvFlow = require('dotenv-flow');
 const client = require('redis').createClient();
 const cors = require('cors');
+const passport = require('passport');
 
 dotenvFlow.config();
 console.log(' Current Environment ===>', process.env.NODE_ENV);
@@ -21,6 +22,10 @@ const {
 } = require('./src/helpers/errorMessage');
 const config = require('./src/config/config');
 const routes = require('./src/routes/routes');
+
+/* Passport.js initialization */
+require('./src/services/authServices');
+passport.initialize();
 
 require('./src/requireAllModels');
 
