@@ -57,6 +57,6 @@ const passport = require('passport');
 router.use('/demo', passport.authenticate('jwt', { session : false }), (req, res) => {});
 ```
 
-```html
-<span style='color:red;font-weight:bold;'>Please remove this README.md file when working with live project.</span>
+```diff
+- Please remove this README.md file when working with live project.
 ```
