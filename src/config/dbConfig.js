@@ -1,8 +1,8 @@
 // User define DB Creadentials
 const dbCredentials = require('./config').db;
-const database = process.env.DATABASE || '';
+const database = process.env.DATABASE_DRIVER || '';
 
-if (database.toLowerCase() === 'nosql') {
+if (database.toLowerCase() === 'mongodb') {
 
   //Bring in the mongoose module
   const mongoose = require('mongoose');
