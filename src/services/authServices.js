@@ -2,12 +2,16 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const jwtCreds = require('../config/config').jwt;
+const {
+  secret,
+  expireIn,
+  algorithm
+} = require('../config/config').jwt;
 
 let opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.algorithms = [jwtCreds.algorithm, 'HS256'];
-opts.secretOrKey = jwtCreds.secret;
+opts.algorithms = [algorithm, 'HS256'];
+opts.secretOrKey = secret;
 passport.use(
   new JwtStrategy(opts, (token, done) => {
     try {
@@ -26,9 +30,9 @@ passport.use(
 exports.createToken = (data) => {
   try {
     if (data === Object(data)) {
-      return jwt.sign(data, jwtCreds.secret, {
-        algorithm: jwtCreds.algorithm || 'HS256',
-        expiresIn: jwtCreds.expireIn || '1d',
+      return jwt.sign(data, secret, {
+        algorithm: algorithm,
+        expiresIn: expireIn,
       });
     } else {
       return new Error('Given data is not object.');

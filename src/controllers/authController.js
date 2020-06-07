@@ -2,11 +2,22 @@ const authService = require('../services/authServices');
 const errorMsg = require('../helpers/errorMessage').errorMessages;
 const utils = require('../helpers/utils');
 
+/**
+ * @description Local login controller.
+ * @function login
+ */
 exports.login = async (req, res) => {
   try {
+
+    const {
+      email,
+      password
+    } = req.body;
+    
+    //Please replace dummy payload with your actual object for creating token.
     let message = {
-      text: 'Login Successful.',
-      token: authService.createToken({name : 'John Doe'})
+      'msg': 'Login Successful.',
+      'token': authService.createToken({email, password})
     };
     res.send(utils.responseMsg(null, true, message));
   } catch (error) {

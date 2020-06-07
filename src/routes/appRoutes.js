@@ -1,24 +1,4 @@
 const router = require('express').Router();
-const dependencies = require('./routesDependencies').default;
-
-/**
- * @swagger
- * /health:
- *  get:
- *    tags:
- *      - Server Health Check 
- *    name: Server Health Check
- *    summary: This is api to check server health.
- *    consumes:
- *      - application/json
- *    produces:
- *      - application/json
- *    responses:
- *      200:
- *        description: successfully send.
- *      500:
- *        description: Internal server error.
- */
-router.get('/health', dependencies.serverHealth.checkHealth);
+//const dependencies = require('./routesDependencies').default;
 
 module.exports = router;
