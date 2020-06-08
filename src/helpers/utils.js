@@ -37,9 +37,9 @@ exports.checkIfDataExists = (data) => {
  */
 exports.responseMsg = (errMsg, successStatus, data, paginated) => {
   const responseObj = {
-    'success': successStatus || false,
-    'error': errMsg || null,
-    'data': data || null
+    success: successStatus || false,
+    error: errMsg || null,
+    data: data || null,
   };
 
   if (errMsg) {

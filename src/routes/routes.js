@@ -1,5 +1,7 @@
-const express = require('express');
-const router = new express.Router();
+const router = require('express').Router();
+const appRoutes = require('./appRoutes');
+const authRoutes = require('./authRoutes');
+const passport = require('passport');
 const dependencies = require('./routesDependencies').default;
 
 /**
@@ -21,5 +23,8 @@ const dependencies = require('./routesDependencies').default;
  *        description: Internal server error.
  */
 router.get('/health', dependencies.serverHealth.checkHealth);
+
+router.use('/app', passport.authenticate('jwt', { session : false }), appRoutes);
+router.use('/auth', authRoutes);
 
 module.exports = router;

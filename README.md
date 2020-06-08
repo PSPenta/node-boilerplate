@@ -41,3 +41,22 @@ _version:-_ `>= v10.16.3`
 	```bash
 	$ npm start
 	```
+
+### Local Authentication Service Setup
+1. Add environment variables in *.env* file referencing from *env.example* file. 
+2. In ***app.js*** file require ***passport.js*** and the ***src/services/authServices.js*** and initialize passport.js.
+	```js
+	const passport = require('passport');
+	require('./src/services/authServices');
+	passport.initialize();
+	```
+3. To create a JWT token use ***createToken()*** from authServices.js which takes object and add it in token.
+4. To authenticate any routes use ***passport.authenticate()*** as middleware on it.
+```js
+const passport = require('passport');
+router.use('/demo', passport.authenticate('jwt', { session : false }), (req, res) => {});
+```
+
+```diff
+- Please remove this README.md file when working with live project.
+```
