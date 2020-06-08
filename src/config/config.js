@@ -1,8 +1,26 @@
 let config = {};
 
-config.db = {};
-config.db.url = process.env.DB_URL || 'mongodb://localhost:27017/';
-config.db.name = process.env.DB_NAME || 'prdxn';
+/* mongodb connection configuration */
+let noSqlDbConfig = {
+  'url': process.env.DB_URL || 'mongodb://localhost:27017/',
+  'name': process.env.DB_NAME || 'prdxn'
+};
+
+/* sql connection configuration */
+let sqlDbConfig = {
+  'username': process.env.DB_USERNAME || 'admin',
+  'password': process.env.DB_PASSWORD || 'admin',
+  'host': process.env.DB_HOST || 'localhost',
+  'port': process.env.DB_PORT || '1433',
+  'dialect': process.env.DB_DIALECT || 'mssql',
+  'name': process.env.DB_NAME || 'prdxn'
+};
+
+config.db = {
+  noSqlDbConfig,
+  sqlDbConfig
+};
+
 config.client = process.env.CLIENT_URL || '*';
 
 /* Swagger Definition */
