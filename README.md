@@ -1,4 +1,4 @@
-# PRDXN Node API Boilerplate
+# PSPenta Node API Boilerplate
 
 ## Installation Guide
 
@@ -9,7 +9,7 @@ _version:-_ `>= v10.16.3`
 ### Development Setup :-
 1. Clone the repository  and install dependencies
 	 ```bash
-	 $ git clone https://github.com/prdxn/node-boilerplate.git  
+	 $ git clone https://github.com/PSPenta/node-boilerplate.git  
 	 $ npm install ( If wants to work with existing version of packages )  
 	 $ npm run update:packages ( If wants to work with latest version of packages )  
 	```	 
