@@ -12,7 +12,7 @@ describe('Testing Server Health ', () => {
   it('/GET Server Health', (done) => {
     chai.request(server).get('/api/health').end((err, res) => {
       if (err) {
-        console.log('err', err);
+        console.error('err', err);
         done();
       }
       expect(res.statusCode).to.equal(200);

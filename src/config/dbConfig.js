@@ -10,7 +10,7 @@ if (database.toLowerCase() === 'mongodb') {
   const dbURI = url + name;
 
   //console to check what is the dbURI refers to
-  console.log('Database URL is => ', dbURI);
+  console.info('Database URL is => ', dbURI);
 
   //Open the mongoose connection to the database
   mongoose.connect(dbURI, {
@@ -25,20 +25,20 @@ if (database.toLowerCase() === 'mongodb') {
   let db = mongoose.connection;
 
   db.on('connected', function () {
-    console.log('Mongoose connected to ' + dbURI);
+    console.info('Mongoose connected to ' + dbURI);
   });
 
   db.on('error', function (err) {
-    console.log('Mongoose connection error: ' + err);
+    console.error('Mongoose connection error: ' + err);
   });
 
   db.on('disconnected', function () {
-    console.log('Mongoose disconnected');
+    console.warn('Mongoose disconnected');
   });
 
   process.on('SIGINT', function () {
     db.close(function () {
-      console.log('Mongoose disconnected through app termination');
+      console.warn('Mongoose disconnected through app termination');
       process.exit(0);
     });
   });
@@ -74,21 +74,21 @@ if (database.toLowerCase() === 'mongodb') {
   sequelize
     .authenticate()
     .then(() =>
-      console.log(
+      console.info(
         `Sequelize connection started on database "${name}" from "${dialect}"`
       )
     )
     .catch((err) => console.error(`Sequelize connection error: ${err}`));
 
   process.on('SIGINT', function () {
-    console.log('Sequelize disconnected through app termination');
+    console.warn('Sequelize disconnected through app termination');
     process.exit(0);
   });
 
   //Exported the database connection to be imported at the server
   exports.default = sequelize;
 } else {
-  console.log(
+  console.warn(
     '\x1b[33m%s\x1b[0m',
     '-> Application is running without database connection!'
   );

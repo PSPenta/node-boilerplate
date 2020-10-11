@@ -13,7 +13,7 @@ const cors = require('cors');
 const passport = require('passport');
 
 dotenvFlow.config();
-console.log(' Current Environment ===>', process.env.NODE_ENV);
+console.info(' Current Environment ===>', process.env.NODE_ENV);
 
 //Local Modules
 const utils = require('./src/helpers/utils');
@@ -119,7 +119,7 @@ app.use('/', function (req, res) {
  * Listening to port
  */
 app.listen(app.get('port'), () => {
-  console.log(`Find the server at port:${app.get('port')}`);
+  console.info(`Find the server at port:${app.get('port')}`);
 });
 
 module.exports = app;
