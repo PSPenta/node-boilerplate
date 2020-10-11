@@ -1,33 +1,31 @@
 //Third Party Modules
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const compression = require('compression');
-const helmet = require('helmet');
-const responseTime = require('response-time');
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const dotenvFlow = require('dotenv-flow');
-const client = require('redis').createClient();
-const cors = require('cors');
-const passport = require('passport');
+const express = require("express");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const compression = require("compression");
+const helmet = require("helmet");
+const responseTime = require("response-time");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const dotenvFlow = require("dotenv-flow");
+const client = require("redis").createClient();
+const cors = require("cors");
+const passport = require("passport");
 
 dotenvFlow.config();
-console.info(' Current Environment ===>', process.env.NODE_ENV);
+console.info(" Current Environment ===>", process.env.NODE_ENV);
 
 //Local Modules
-const utils = require('./src/helpers/utils');
-const {
-  errorMessages
-} = require('./src/helpers/errorMessage');
-const config = require('./src/config/config');
-const routes = require('./src/routes/routes');
+const utils = require("./src/helpers/utils");
+const { errorMessages } = require("./src/helpers/errorMessage");
+const config = require("./src/config/config");
+const routes = require("./src/routes/routes");
 
 /* Passport.js initialization */
-require('./src/services/authServices');
+require("./src/services/authServices");
 passport.initialize();
 
-require('./src/requireAllModels');
+require("./src/requireAllModels");
 
 const app = express();
 
@@ -35,31 +33,31 @@ const app = express();
 app.use(helmet());
 
 /* Configuring port */
-app.set('port', process.env.PORT || 8000);
+app.set("port", process.env.PORT || 8000);
 
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 
 app.use(responseTime());
 
 //Best practices app settings
-app.set('title', 'Node API');
-app.set('query parser', 'extended');
+app.set("title", "Node API");
+app.set("query parser", "extended");
 
 const clientUrl = process.env.CLIENT_URL || config.client;
 
 /* Importing database connection when server starts **/
-require('./src/config/dbConfig');
+require("./src/config/dbConfig");
 
 /* CORS Setting */
 const corsOption = {
   origin: clientUrl,
   optionsSuccessStatus: 200,
-  methods: ['POST', 'GET', 'OPTIONS', 'HEAD', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: '*',
+  methods: ["POST", "GET", "OPTIONS", "HEAD", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: "*",
   preflightContinue: true,
 };
 app.use(cors(corsOption));
-app.options('*', cors());
+app.options("*", cors());
 
 /**
  * @name Swagger Documentation
@@ -69,23 +67,31 @@ const swaggerDefinition = config.swaggerDefinition;
 const swaggerOptions = config.swaggerOptions;
 const options = {
   swaggerDefinition,
-  'apis': ['./src/routes/*.js'],
+  apis: ["./src/routes/*.js"],
 };
 
 const swaggerSpec = swaggerJsDoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, swaggerOptions)
+);
 
 /* App activity logging */
-app.use(morgan(':method :url :date :remote-addr :status :response-time'));
+app.use(morgan(":method :url :date :remote-addr :status :response-time"));
 
 /* Parsing Request Limits */
-app.use(bodyParser.json({
-  limit: '50mb'
-}));
-app.use(bodyParser.urlencoded({
-  'limit': '50mb',
-  'extended': true
-}));
+app.use(
+  bodyParser.json({
+    limit: "50mb",
+  })
+);
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+  })
+);
 
 /**
  * @name express-status-monitor
@@ -93,7 +99,7 @@ app.use(bodyParser.urlencoded({
  * Run server and go to /status
  * For further information: https://www.npmjs.com/package/express-status-monitor
  */
-app.use(require('express-status-monitor')());
+app.use(require("express-status-monitor")());
 
 /**
  * @name compression
@@ -102,24 +108,24 @@ app.use(require('express-status-monitor')());
 app.use(compression());
 
 /* API rate limit configuration. */
-const limiter = require('express-limiter')(app, client);
-const apiRateLimit = require('./src/services/apiRateLimit').rateLimit;
+const limiter = require("express-limiter")(app, client);
+const apiRateLimit = require("./src/services/apiRateLimit").rateLimit;
 const limitCount = process.env.RATE_LIMIT_COUNT || 10,
   limitMinute = process.env.RATE_LIMIT_MINUTE || 1;
 
 /* Configuring Routes */
-app.use('/api', apiRateLimit(limiter, limitCount, limitMinute), routes);
+app.use("/api", apiRateLimit(limiter, limitCount, limitMinute), routes);
 
 /* Handling invalid route */
-app.use('/', function (req, res) {
+app.use("/", function (req, res) {
   res.status(404).send(utils.responseMsg(errorMessages.routeNotFound));
 });
 
 /**
  * Listening to port
  */
-app.listen(app.get('port'), () => {
-  console.info(`Find the server at port:${app.get('port')}`);
+app.listen(app.get("port"), () => {
+  console.info(`Find the server at port:${app.get("port")}`);
 });
 
 module.exports = app;
