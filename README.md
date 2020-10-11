@@ -1,4 +1,4 @@
-# Node API Boilerplate
+# PSPenta Node API Boilerplate
 
 ## Installation Guide
 
