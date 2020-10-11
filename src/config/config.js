@@ -3,7 +3,7 @@ let config = {};
 /* mongodb connection configuration */
 let noSqlDbConfig = {
   url: process.env.DB_URL || 'mongodb://localhost:27017/',
-  name: process.env.DB_NAME || 'prdxn',
+  name: process.env.DB_NAME || 'myDB',
 };
 
 /* sql connection configuration */
@@ -13,7 +13,7 @@ let sqlDbConfig = {
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || '1433',
   dialect: process.env.DB_DIALECT || 'mssql',
-  name: process.env.DB_NAME || 'prdxn',
+  name: process.env.DB_NAME || 'myDB',
 };
 
 config.db = {
@@ -23,7 +23,7 @@ config.db = {
 
 /* JWT Authentication Credentials  */
 config.jwt = {
-  secret: process.env.JWT_SECRET  || 'prdxn',
+  secret: process.env.JWT_SECRET  || 'secret',
   expireIn: process.env.JWT_EXPIRE_IN || '1d',
   algorithm: process.env.JWT_ALGORITHM || 'HS256',
 };
@@ -33,7 +33,7 @@ config.client = process.env.CLIENT_URL || '*';
 /* Swagger Definition */
 config.swaggerDefinition = {
   info: {
-    title: 'PRDXN Node API Boilerplate',
+    title: 'Node API Boilerplate',
     version: '1.0.0',
     description: '',
   },

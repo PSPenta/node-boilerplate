@@ -44,8 +44,8 @@ exports.createToken = (data) => {
 
 /**
  * This is demo strategy for third party authentication from Google OAuth. (If application doesn't need it please delete this comment.)
- * To use such authentication developer needs to install appropriate npm package for that third party application. 
- * 
+ * To use such authentication developer needs to install appropriate npm package for that third party application.
+ *
  * passport.use(
   new GoogleStrategy(
     {

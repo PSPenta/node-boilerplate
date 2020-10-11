@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
       email,
       password
     } = req.body;
-    
+
     //Please replace dummy payload with your actual object for creating token.
     let message = {
       'msg': 'Login Successful.',

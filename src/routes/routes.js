@@ -9,7 +9,7 @@ const dependencies = require('./routesDependencies').default;
  * /health:
  *  get:
  *    tags:
- *      - Server Health Check 
+ *      - Server Health Check
  *    name: Server Health Check
  *    summary: This is api to check server health.
  *    consumes:

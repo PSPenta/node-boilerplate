@@ -19,7 +19,7 @@ const dependencies = require('./routesDependencies').default;
  *        schema:
  *         type: object
  *         properties:
- *          email: 
+ *          email:
  *            type: string
  *          password:
  *            type: string
@@ -35,7 +35,7 @@ const dependencies = require('./routesDependencies').default;
 router.post('/login', dependencies.authClient.login);
 
 /**
- * @note All routes regarding local signup OR using Oauth sign-in should be listed below. 
+ * @note All routes regarding local signup OR using Oauth sign-in should be listed below.
  */
 
 module.exports = router;

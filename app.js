@@ -42,7 +42,7 @@ app.disable('x-powered-by');
 app.use(responseTime());
 
 //Best practices app settings
-app.set('title', 'PRDXN Node API');
+app.set('title', 'Node API');
 app.set('query parser', 'extended');
 
 const clientUrl = process.env.CLIENT_URL || config.client;
@@ -63,7 +63,7 @@ app.options('*', cors());
 
 /**
  * @name Swagger Documentation
- * @description This is used for API documentation. It's not mandatory 
+ * @description This is used for API documentation. It's not mandatory
  *  */
 const swaggerDefinition = config.swaggerDefinition;
 const swaggerOptions = config.swaggerOptions;
@@ -105,7 +105,7 @@ app.use(compression());
 const limiter = require('express-limiter')(app, client);
 const apiRateLimit = require('./src/services/apiRateLimit').rateLimit;
 const limitCount = process.env.RATE_LIMIT_COUNT || 10,
-  limitMinute = process.env.RATE_LIMIT_MINUTE || 1; 
+  limitMinute = process.env.RATE_LIMIT_MINUTE || 1;
 
 /* Configuring Routes */
 app.use('/api', apiRateLimit(limiter, limitCount, limitMinute), routes);

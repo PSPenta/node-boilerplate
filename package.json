@@ -1,5 +1,5 @@
 {
-  "name": "prdxn-node-api-boilerplate",
+  "name": "node-api-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,15 +19,15 @@
   "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prdxn/node-boilerplate.git"
+    "url": "git+https://github.com/PSPenta/node-boilerplate.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/prdxn/node-boilerplate/issues"
+    "url": "https://github.com/PSPenta/node-boilerplate/issues"
   },
-  "homepage": "https://github.com/prdxn/node-boilerplate#readme",
+  "homepage": "https://github.com/PSPenta/node-boilerplate#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "body-parser": "^1.19.0",

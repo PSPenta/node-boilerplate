@@ -4,7 +4,7 @@ const utils = require('../helpers/utils');
  * @function rateLimit
  * @description This function validate the api rate limit.
  * We can use this as application level as well as route level.
- * For further information: 
+ * For further information:
  * For IP only: 'connection.remoteAddress'
  * Time format: milisecond * minute * second
  */
